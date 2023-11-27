@@ -1,0 +1,9 @@
+<h1>Plant Upload</h1>
+
+<input type="file" (change)="onFileSelected($event)">
+<button (click)="identifyPlant()">Identify Plant</button>
+
+<div *ngFor="let suggestion of suggestions">
+  <h3>{{ suggestion.plant_name }}</h3>
+  
+</div>
