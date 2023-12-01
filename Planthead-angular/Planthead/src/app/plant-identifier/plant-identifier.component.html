@@ -3,7 +3,23 @@
 <input type="file" (change)="onFileSelected($event)">
 <button (click)="identifyPlant()">Identify Plant</button>
 
-<div *ngFor="let suggestion of suggestions">
-  <h3>{{ suggestion.plant_name }}</h3>
+<div *ngFor="let plant of identifiedPlants">
+  <h3><strong>Plant Name:</strong> {{ plant.plant_name }}</h3>
+  <p><strong>Common Names:</strong> {{ plant.common_names.join(', ') }}</p>
+
+  <p><strong>Probability:</strong> {{ plant.probability * 100 | number:'1.0-0' }}% </p>
+  <p><strong>Description:</strong> {{ plant.description.value }} </p>
+
+  <div *ngIf="plant.edible_parts">
+    <p><strong>Edible Parts:</strong></p>
+    <ul>
+      <li *ngFor="let ediblePart of plant.edible_parts">
+        {{ ediblePart }}
+      </li>
+    </ul>
+  </div>
+
+  <p><strong>URL: </strong> <a [href]="plant.url" target="_blank">{{ plant.url }}</a></p>
   
+
 </div>
